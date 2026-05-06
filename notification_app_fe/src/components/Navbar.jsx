@@ -1,11 +1,9 @@
 import React from "react";
-import {
-  AppBar, Toolbar, Typography, Tabs, Tab, Box, useMediaQuery, useTheme,
-} from "@mui/material";
+import { AppBar, Toolbar, Typography, Tabs, Tab, Box, useMediaQuery, useTheme } from "@mui/material";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import StarIcon from "@mui/icons-material/Star";
 
-const Navbar = ({ activeTab, onTabChange }) => {
+const Navbar = ({ activeTab, onTabChange, actions }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -25,19 +23,10 @@ const Navbar = ({ activeTab, onTabChange }) => {
           TabIndicatorProps={{ style: { backgroundColor: "#fff" } }}
           sx={{ "& .MuiTab-root": { color: "rgba(255,255,255,0.75)", minWidth: isMobile ? 120 : 140 } }}
         >
-          <Tab
-            value="all"
-            label="All Notifications"
-            icon={<NotificationsIcon fontSize="small" />}
-            iconPosition="start"
-          />
-          <Tab
-            value="priority"
-            label="Priority Inbox"
-            icon={<StarIcon fontSize="small" />}
-            iconPosition="start"
-          />
+          <Tab value="all" label="All Notifications" icon={<NotificationsIcon fontSize="small" />} iconPosition="start" />
+          <Tab value="priority" label="Priority Inbox" icon={<StarIcon fontSize="small" />} iconPosition="start" />
         </Tabs>
+        {actions && <Box ml={1}>{actions}</Box>}
       </Toolbar>
     </AppBar>
   );
